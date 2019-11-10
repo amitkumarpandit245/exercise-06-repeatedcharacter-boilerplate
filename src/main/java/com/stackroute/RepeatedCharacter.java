@@ -30,8 +30,13 @@ public class RepeatedCharacter {
 					res=max;
 				}
 			}
+			System.out.println(res);
 		}
-		System.out.println(res);
+		else{
+			res=0;
+			System.out.println("No characters repeated");
+		}
+		
 		return res;
 	}
 }
