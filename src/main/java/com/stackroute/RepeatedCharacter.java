@@ -20,8 +20,8 @@ public class RepeatedCharacter {
 	public static Character findRepeatedCharacter(String input) {
 		Character res=0;
 		Map<Character,Integer> count=new HashMap<>();
-		input.replaceAll("\\s+", "");
-		if(input!=null || !input.equals("")) {
+		if(input!=null) {
+			input.replaceAll("\\s+", "");
 			for(int i=0;i<input.length();i++) {
 				if(!count.containsKey(input.charAt(i))) {
 					count.put(input.charAt(i), 0);
@@ -31,9 +31,13 @@ public class RepeatedCharacter {
 				}
 			}
 			Stream<Entry<Character,Integer>> sorted=count.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+			Stream<Entry<Character,Integer>> sortedv=count.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()));
 			res=sorted.findFirst().get().getKey();
-			
-			
+			int val=sortedv.findFirst().get().getValue();
+			if(val<1) {
+				System.out.println("No characters repeated");
+				return 0;
+			}
 		}
 		else{
 			System.out.println("No characters repeated");
